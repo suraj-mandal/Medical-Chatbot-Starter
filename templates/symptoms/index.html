@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedicalChatbot</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="{% static 'assets/css/Bold-BS4-Footer-Big-Logo.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Community-ChatComments.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/footer-ultimate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Pretty-Search-Form.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Social-Icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+
+    <style>
+        .output-style {
+            max-width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            min-height: 20vh;
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-light navbar-expand-md">
+    <div class="container-fluid"><a class="navbar-brand" href="#">Medical Chatbot</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse"
+             id="navcol-1">
+            <ul class="nav navbar-nav ml-auto"></ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item" role="presentation"><a class="nav-link active"
+                                                            href="#"><strong>Description</strong></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div id="promo">
+    <div class="jumbotron">
+        <h1><strong>What are your main symptoms ?</strong><br></h1>
+        <p><br><strong>Symptom Checker :&nbsp;</strong>Identify possible conditions related to your symptoms.<br></p>
+        <p></p>
+        <form class="search-form" action="{% url 'symptoms:home' %}" method="get">
+            <div class="input-group">
+                <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-search"></i></span>
+                </div>
+                <input class="form-control" type="text" placeholder="Enter your probable symptoms.."
+                       name="user-symptoms">
+                <div class="input-group-append">
+                    <button class="btn btn-light" type="submit">ADD</button>
+                </div>
+            </div>
+        </form>
+        <div class="container">
+            {% if symptoms %}
+                <ul class="list-group">
+                    {% for symptom in symptoms %}
+                        <li class="list-group-item"><span>{{ symptom }}</span></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Search for symptoms for processing the data</p>
+            {% endif %}
+
+            <div id="output">
+                {# this will print out all the symptoms that are processed by the backend #}
+                {% if predicted_diseases %}
+                    <ul class="list-group" style="max-width: 70% !important; margin: 0 auto !important;">
+                        {% for disease in predicted_diseases %}
+                            <li class="list-group-item"><span>{{ disease }}</span></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Once you have searched for symptoms click here and see the magic unfold!!</p>
+                {% endif %}
+            </div>
+            <br>
+            <br>
+            <form method="post" action="{% url 'symptoms:home' %}">
+                {% csrf_token %}
+                <input type="hidden" name="process-symptoms">
+                <button id="demo" type="submit">Click me</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div>
+    <div id="footer">
+        <footer id="footer">
+
+            <div style="background: black; text-align: center; margin: 0; padding:10px">
+                <p style="color:grey; font-family: raleway, sans-serif">Copyright (c) 2019 MedicalChatbot.in</p>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

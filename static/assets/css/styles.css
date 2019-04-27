@@ -1,0 +1,65 @@
+body {
+  font-family:Arial, Helvetica, sans-sarif;
+}
+
+#promo {
+  text-align:center;
+  padding:40px;
+  background:url(../../assets/img/Healthcare-graphic.jpg) no-repeat;
+  background-size:cover;
+}
+
+.jumbotron {
+  border-radius:20px;
+  padding:50px;
+  background-color:rgba(255,255,255,0.75);
+  max-width:1200px;
+  margin:0 auto;
+  font-size:18px;
+}
+
+.container.description {
+  text-align:center;
+  padding:60px 0;
+  margin-top:70px;
+  margin-bottom:20px;
+}
+
+#welcome {
+  max-width:1200px;
+  font-size:18px;
+  margin:0 auto;
+  margin-top:20px;
+}
+
+p {
+  font-weight:normal;
+  border-bottom:30px;
+}
+
+.row {
+  padding:20px;
+  text-align:center;
+  font-size:18px;
+  margin-top:20px;
+}
+
+.darksection {
+  background-color:#e8eef4;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  font-size:18px;
+}
+
+img {
+  max-height:48px;
+  margin-right:18px;
+  margin-top:-3px;
+  display:inline;
+}
+
+#foot {
+  max-height:200px;
+}
+
