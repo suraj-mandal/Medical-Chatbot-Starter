@@ -63,9 +63,11 @@
             {% if symptoms %}
                 <ul class="list-group">
                     {% for symptom in symptoms %}
-                        <li class="list-group-item"><span>{{ symptom }}</span></li>
+                        <li class="list-group-item"><span>{{ symptom | upper }}</span></li>
                     {% endfor %}
                 </ul>
+            {% elif predicted_diseases %}
+                <p>Here are your predicted results.. Enjoy</p>
             {% else %}
                 <p>Search for symptoms for processing the data</p>
             {% endif %}
