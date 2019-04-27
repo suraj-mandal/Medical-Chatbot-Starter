@@ -29,9 +29,14 @@ def home(request):
     # when I am sending post data, I should not display the sensitive information on the address bar
     # when request method is POST
     else:
-        predicted_diseases = process_symptoms(symptoms)
-        symptoms.clear()
         context = {
-            'predicted_diseases': predicted_diseases
+            'symptoms': symptoms
         }
+        if len(symptoms) < 3:
+            list_underflow = "Please enter at least 3 symptoms for proper prediction"
+            context['list_underflow'] = list_underflow
+        else:
+            predicted_diseases = process_symptoms(symptoms)
+            # symptoms.clear()
+            context['predicted_diseases'] = predicted_diseases
         return render(request, 'symptoms/index.html', context=context)
